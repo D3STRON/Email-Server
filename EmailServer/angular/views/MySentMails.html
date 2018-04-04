@@ -2,6 +2,14 @@
 <h2>{{data.userId}}'s Sent Mails</h2>
 </br>
 </br>
-<input type="button" value="logout" ng-click=""/>
-<input type="button" value="Main Page" ng-click=""/>
-<input type="button" value="compose" ng-click=""/>
+<input type="button" value="logout" ng-click="login()"/>
+<input type="button" value="Main Page" ng-click="mainpage()"/>
+<input type="button" value="compose" ng-click="compose()"/>
+<div ng-repeat="email in semails | orderBy:'+':true">
+  <p>-----------------------------------------------------------------------------------</p>
+<p>To: {{email.to}}</p>
+<p>SUBJECT: {{email.subject}}</p>
+<p>{{email.viewMessage}}</p>
+<input type="button" value="VIEW" id={{$index}} data-ng-click='view($event)'/>
+<input type="button" value="HIDE" id={{$index}} data-ng-click='hide($event)'/>
+</div>

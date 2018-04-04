@@ -1,9 +1,5 @@
 var app = angular.module('angular',["ngRoute"])
-<<<<<<< HEAD
 var socket=io.connect('http://localhost:8000/')
-=======
-var socket=io.connect('http://bingo.localtunnel.me/')
->>>>>>> 2eb6b50701bae95fa0a3b765fcbde83cecc402a6
 app.config(['$routeProvider','$locationProvider',function($routeProvider, $locationProvider){
    $routeProvider.when('/login',{
       templateUrl: './views/LoginPage.html',
@@ -13,13 +9,10 @@ app.config(['$routeProvider','$locationProvider',function($routeProvider, $locat
      templateUrl: './views/MainPage.html',
      controller: 'mainPageController'
  })
-<<<<<<< HEAD
  .when('/mySentMails',{
    templateUrl: './views/MySentMails.html',
    controller:  'mySentMailsController'
  })
-=======
->>>>>>> 2eb6b50701bae95fa0a3b765fcbde83cecc402a6
  .when('/SendMail',{
    templateUrl: './views/SendMailPage.html',
    controller: 'sendMailController'
@@ -55,10 +48,6 @@ app.controller('loginController',function($scope,$window ,$http, $location){
 
 app.controller('mainPageController',function($scope,$window,$http,$location){
 $scope.data={userId:$window.sessionStorage.getItem('userId')}
-<<<<<<< HEAD
-=======
-$scope.semails=[]
->>>>>>> 2eb6b50701bae95fa0a3b765fcbde83cecc402a6
 $scope.remails=[]
   if($window.sessionStorage.getItem('userId')==undefined)
   {
@@ -71,10 +60,6 @@ $scope.remails=[]
        headers: {'Content-type':'application/json'}
        }).then(function(res){
          $window.sessionStorage.setItem('to',"")
-<<<<<<< HEAD
-=======
-          $scope.semails=res.data.sent_emails
->>>>>>> 2eb6b50701bae95fa0a3b765fcbde83cecc402a6
           $scope.remails=res.data.recieved_email
        })
   }
@@ -85,6 +70,7 @@ $scope.remails=[]
        socket.on('email',function(data){
          console.log(data)
          if(data.to===$window.sessionStorage.getItem('userId')){
+           alert("New Mail!")
            $scope.remails.push(data)
            $scope.$apply()
          }
@@ -123,14 +109,11 @@ $scope.remails=[]
    $scope.compose = function(){
      $location.path('/SendMail')
    }
-<<<<<<< HEAD
    $scope.sent_emails= function()
    {
       $location.path('/mySentMails')
    }
 
-=======
->>>>>>> 2eb6b50701bae95fa0a3b765fcbde83cecc402a6
 })
 
 app.controller('sendMailController', function($scope,$http, $window){
@@ -162,7 +145,6 @@ app.controller('sendMailController', function($scope,$http, $window){
 
      }
 })
-<<<<<<< HEAD
 
 
 app.controller('mySentMailsController',function($scope,$window,$location, $http){
@@ -177,6 +159,27 @@ app.controller('mySentMailsController',function($scope,$window,$location, $http)
       $scope.semails=res.data.sent_email
       console.log($scope.semails)
    })
+   $scope.view= function(event)
+   {
+     $scope.indx=$scope.semails.length-event.target.id-1
+     $scope.semails[$scope.indx].viewMessage=$scope.semails[$scope.indx].message
+   }
+   $scope.hide= function(event)
+   {
+     $scope.indx=$scope.semails.length-event.target.id-1
+     $scope.semails[$scope.indx].viewMessage=""
+   }
+   $scope.mainpage= function()
+   {
+     $location.path('/MainPage')
+   }
+   $scope.logout= function()
+   {
+     $window.sessionStorage.clear()
+     $location.path('/login')
+   }
+   $scope.compose= function()
+   {
+     $location.path('/SendMail')
+   }
 })
-=======
->>>>>>> 2eb6b50701bae95fa0a3b765fcbde83cecc402a6
