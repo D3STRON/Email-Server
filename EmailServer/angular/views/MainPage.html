@@ -1,0 +1,15 @@
+<h2>WELCOME {{data.userId}}</h2></br>
+<input type="button" value="logout" ng-click="logout()"/>
+<input type="button" value="compose" ng-click="compose()"/>
+<input type="button" value="sent mails" ng-click="sent_emails()"/>
+<div ng-repeat="email in remails | orderBy:'+':true">
+  <p>-----------------------------------------------------------------------------------</p>
+<p>FROM: {{email.from}}</p>
+<p>SUBJECT: {{email.subject}}</p>
+<p>STATUS: {{email.status}}</p>
+<p>{{email.viewMessage}}</p>
+<input type="button" value="REPLY" id={{$index}} data-ng-click='reply($event)' />
+<input type="button" value="VIEW" id={{$index}} data-ng-click='view($event)'/>
+<input type="button" value="HIDE" id={{$index}} data-ng-click='hide($event)'/>
+
+</div>
