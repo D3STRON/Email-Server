@@ -70,7 +70,7 @@ $scope.remails=[]
        socket.on('email',function(data){
          console.log(data)
          if(data.to===$window.sessionStorage.getItem('userId')){
-           alert("New Mail!")
+           alert("You have a Mail!")
            $scope.remails.push(data)
            $scope.$apply()
          }
