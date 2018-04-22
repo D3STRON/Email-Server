@@ -1,15 +1,93 @@
+<!Doctype html>
+<html>
+<head>
+<title>My Sent Mails</title>
+<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+		<!--<link rel= "stylesheet" type= "text/css" href= "demo.css">
+		<!--<link rel= "stylesheet" type= "text/css" href= "sky-forms.css">-->
+		<!--<link rel= "stylesheet" type ="text/css" href="rawlogin.css">-->
+<style type="text/css">
+.button {
+	<!--float: right;-->
+	
+	height: 45px;
+	overflow: hidden;
+	margin: 10px 0 0 20px;
+	padding: 0 25px;
+	outline: none;
+	border: 0;
+	font: 300 15px/39px 'Open Sans', Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	text-decoration: none;
+	background-color: #66a3ff;
+	color: #fff;
+	border-radius:12px;
+	cursor: pointer;
+}
 
-<h2>{{data.userId}}'s Sent Mails</h2>
+
+.button1
+{
+
+     float: right;
+	 border-radius: 12px;	
+	height: 45px;
+	overflow: hidden;
+	margin: -125px 100px 40px 60px;
+	padding: 0 25px;
+	outline: none;
+	border: 0;
+	font: 300 15px/39px 'Open Sans', Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	text-decoration: none;
+	background-color: #66a3ff;
+	color: #fff;
+	cursor: pointer;
+
+}
+
+.button:hover {
+background-color: #3385ff;
+}
+.button1:hover{
+background-color: #3385ff;
+}
+
+.html, body {
+	margin: 0;
+	padding: 0;
+	background-attachment: fixed;
+	background-position: 50% 50%;
+	background-size: cover;
+	
+	background-repeat:none;
+	color: white;
+	
+}
+
+</style>
+</head>
+<body bgcolor="#E6E6FA">
 </br>
-</br>
-<input type="button" value="logout" ng-click="login()"/>
-<input type="button" value="Main Page" ng-click="mainpage()"/>
-<input type="button" value="compose" ng-click="compose()"/>
+
+<h1><b><i>{{data.userId}}'s Sent Mails</b></i></h1>
+
+
+
+
+<p><input type="button" class= "button" value="Compose" ng-click="compose()"/></p>
+<p><input type="button" class= "button" value="Main Page" ng-click="mainpage()"/></p>
+
+<p><input type="button" class="button1" value="Logout" ng-click="login()"/></p>
 <div ng-repeat="email in semails | orderBy:'+':true">
-  <p>-----------------------------------------------------------------------------------</p>
-<p>To: {{email.to}}</p>
+ <fieldset><ul><h3><strong>To: {{email.to}}</strong></h3>
 <p>SUBJECT: {{email.subject}}</p>
 <p>{{email.viewMessage}}</p>
-<input type="button" value="VIEW" id={{$index}} data-ng-click='view($event)'/>
-<input type="button" value="HIDE" id={{$index}} data-ng-click='hide($event)'/>
+</ul>
+
+<input type="button"  class="button" value="View" id={{$index}} data-ng-click='view($event)'/>
+<input type="button" class= "button" value="Hide" id={{$index}} data-ng-click='hide($event)'/>
 </div>
+</fieldset>
+</body>

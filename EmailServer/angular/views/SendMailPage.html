@@ -1,6 +1,62 @@
-<form>
-  <input type="text" placeholder="TO" ng-model="email.to"/></br>
-  <input type="text" placeholder="SUBJECT"  ng-model="email.subject"/></br>
-  <textarea placeholder="CONTENT" ng-model="email.message"/></textarea></br></br>
-  <input type="button" value="SEND" ng-click="send()">
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Send Mail </title>
+
+<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+		<!--<link rel= "stylesheet" type= "text/css" href= "demo.css">
+		<!--<link rel= "stylesheet" type= "text/css" href= "sky-forms.css">-->
+		<!--<link rel= "stylesheet" type ="text/css" href="rawlogin.css">-->
+<style type="text/css">
+
+.button {
+	<!--float: right;-->
+	
+	height: 45px;
+	overflow: hidden;
+	margin: 10px 0 0 20px;
+	padding: 0 25px;
+	outline: none;
+	border: 0;
+	font: 300 15px/39px 'Open Sans', Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	text-decoration: none;
+	background-color: #66a3ff;
+	color: #fff;
+	border-radius:12px;
+	cursor: pointer;
+}
+
+.button:hover {
+background-color: #3385ff;
+}
+
+.html, body {
+	margin: 0;
+	padding: 0;
+	background-attachment: fixed;
+	background-position: 50% 50%;
+	background-size: cover;
+	
+	background-repeat:none;
+	color: white;
+	
+}
+</style>
+</head>
+
+  <body bgcolor="#E6E6FA">
+  </br>
+  <form>
+  <fieldset>
+  <center> <h1><b><u><i> COMPOSE </i></u></b></h1></center>
+  <center><input type="text" placeholder="TO:" style="width:400px; height:30px; border-radius:12px;" ng-model="email.to"/></br></center></br>
+  <center><input type="text" placeholder="SUBJECT:"   style="width:400px; height:30px; border-radius:12px;" ng-model="email.subject"/></br></center></br>
+  <center><textarea placeholder="CONTENT:"   style="width:400px; height:100px; border-radius:12px;" ng-model="email.message"/></textarea></br></br></center></br>
+  <center><input type="button" class="button" value="SEND" ng-click="send()"></center>
+  </fieldset>
 </form>
+</body>
+</html>
