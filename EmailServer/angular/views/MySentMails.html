@@ -10,7 +10,7 @@
 <style type="text/css">
 .button {
 	<!--float: right;-->
-	
+
 	height: 45px;
 	overflow: hidden;
 	margin: 10px 0 0 20px;
@@ -31,7 +31,7 @@
 {
 
      float: right;
-	 border-radius: 12px;	
+	 border-radius: 12px;
 	height: 45px;
 	overflow: hidden;
 	margin: -125px 100px 40px 60px;
@@ -60,10 +60,10 @@ background-color: #3385ff;
 	background-attachment: fixed;
 	background-position: 50% 50%;
 	background-size: cover;
-	
+
 	background-repeat:none;
 	color: white;
-	
+
 }
 
 </style>
@@ -79,7 +79,7 @@ background-color: #3385ff;
 <p><input type="button" class= "button" value="Compose" ng-click="compose()"/></p>
 <p><input type="button" class= "button" value="Main Page" ng-click="mainpage()"/></p>
 
-<p><input type="button" class="button1" value="Logout" ng-click="login()"/></p>
+<p><input type="button" class="button1" value="Logout" ng-click="logout()"/></p>
 <div ng-repeat="email in semails | orderBy:'+':true">
  <fieldset><ul><h3><strong>To: {{email.to}}</strong></h3>
 <p>SUBJECT: {{email.subject}}</p>
@@ -87,7 +87,7 @@ background-color: #3385ff;
 </ul>
 
 <input type="button"  class="button" value="View" id={{$index}} data-ng-click='view($event)'/>
-<input type="button" class= "button" value="Hide" id={{$index}} data-ng-click='hide($event)'/>
+<input type="button" class= "button" value="Hide" id={{$index}} data-ng-click='hide($event)'/>  At: {{email.date}} , On: {{email.time}}
 </div>
 </fieldset>
 </body>

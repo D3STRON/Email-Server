@@ -6,7 +6,9 @@ var emailSchema = new Schema({
     from: String,
     subject:String,
     status:String,
-    message: String
+    message: String,
+    time:String,
+    date:String
 })
 
 var Email = mongoose.model('Email',emailSchema)

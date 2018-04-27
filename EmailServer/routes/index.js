@@ -8,7 +8,7 @@ router.get('*',function(req,res){
 })
 
 router.post('/login',function(req,res){
-  User.findOne({userId:req.body.userId , password: req.body.password},function(err,data){
+  User.findOne({userId:req.body.userId},function(err,data){
     if(err){
       throw err
     }
@@ -16,11 +16,16 @@ router.post('/login',function(req,res){
         if(data==null)
         {
           User.updateUser(req.body)
+           res.json(req.body)    
+        }
+        else if(data.password!==req.body.password){
+          res.json({
+            success:false
+          })
         }
         else{
-          console.log('loggin in!')
+             res.json(req.body)
         }
-        res.json(req.body)
     }
   })
 })
@@ -32,6 +37,11 @@ router.post('/MainPage',function(req,res){
        res.json(data.emails)
      }
    })
+})
+
+router.post('/Upload', function(req,res){
+  console.log(req.body)
+  res.send(true)
 })
 
 router.post('/changeViewStatus',function(req,res){

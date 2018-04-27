@@ -12,8 +12,6 @@
 <style type="text/css">
 
 .button {
-	<!--float: right;-->
-	
 	height: 45px;
 	overflow: hidden;
 	margin: 10px 0 0 20px;
@@ -39,10 +37,10 @@ background-color: #3385ff;
 	background-attachment: fixed;
 	background-position: 50% 50%;
 	background-size: cover;
-	
+
 	background-repeat:none;
 	color: white;
-	
+
 }
 </style>
 </head>
@@ -55,6 +53,11 @@ background-color: #3385ff;
   <center><input type="text" placeholder="TO:" style="width:400px; height:30px; border-radius:12px;" ng-model="email.to"/></br></center></br>
   <center><input type="text" placeholder="SUBJECT:"   style="width:400px; height:30px; border-radius:12px;" ng-model="email.subject"/></br></center></br>
   <center><textarea placeholder="CONTENT:"   style="width:400px; height:100px; border-radius:12px;" ng-model="email.message"/></textarea></br></br></center></br>
+  <center><div>
+            <input type="file" name="file" id="file">
+          </div>
+				</center>
+  <center><input type="button" class="button" value="UPLOAD" ng-click="upload()"></center>			
   <center><input type="button" class="button" value="SEND" ng-click="send()"></center>
   </fieldset>
 </form>

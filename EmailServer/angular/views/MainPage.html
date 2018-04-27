@@ -11,7 +11,7 @@
 
 .button {
 	<!--float: right;-->
-	
+
 	height: 45px;
 	overflow: hidden;
 	margin: 10px 0 0 20px;
@@ -32,7 +32,7 @@
 {
 
      float: right;
-		
+
 	height: 45px;
 	overflow: hidden;
 	margin: -125px 100px 40px 60px;
@@ -62,10 +62,10 @@ background-color: #3385ff;
 	background-attachment: fixed;
 	background-position: 50% 50%;
 	background-size: cover;
-	
+
 	background-repeat:none;
 	color: white;
-	
+
 }
 
 
@@ -90,9 +90,9 @@ background-color: #3385ff;
 <p>{{email.viewMessage}}</p>
 </ul>
 <input type="button" class= "button" value="Reply" id={{$index}} data-ng-click='reply($event)' />
+<input type="button" class= "button" value="Forward" id={{$index}} data-ng-click='forward($event)'/>
 <input type="button"  class= "button" value="View" id={{$index}} data-ng-click='view($event)'/>
-<input type="button" class= "button" value="Hide" id={{$index}} data-ng-click='hide($event)'/>
-
+<input type="button" class= "button" value="Hide" id={{$index}} data-ng-click='hide($event)'/>  At: {{email.date}} , On: {{email.time}}
 </fieldset>
 
 </div>
