@@ -5,9 +5,6 @@ var socket= require('socket.io')
 const path= require('path')
 const crypto= require('crypto')
 const multer = require('multer');
-const GridFsStorage = require('multer-gridfs-storage');
-const Grid = require('gridfs-stream');
-const methodOverride = require('method-override');
 
 var User= require('./Models/UserModel')
 var app= express()
@@ -17,13 +14,21 @@ const mongoURI = 'mongodb://localhost/email'
 mongoose.connect(mongoURI)
 ///for viewing request.body/////////////////////
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true}));
 app.use(cookieParser());
+////////////////////////////// storage engine//////////////
+var  storage = require('multer-gridfs-storage')({
+  url: mongoURI,
+  file: (req, file) => {
+    return {
+      filename: Date.now() + path.extname(file.originalname), //Appending extension
+      bucketName: 'uploads'
+      }
+  }
+})
 
-
-app.use(methodOverride('_method'));
-////for using the index.html file for diplays///////////
-app.use(express.static(__dirname + '/angular'));
+var upload = multer({storage: storage });
+app.use(express.static(__dirname + '/angular'));////for using the index.html file for diplays///////////
 app.use('/', routes)
 
 //////////////////////////////////////////////
@@ -51,4 +56,19 @@ io.on('connection',function(socket){
   })
 })
 
-//	background-image:url("./css/background.jpg");
+app.post('/Upload', upload.single('file'),function(req,res, next){
+  console.log(req.body)
+  console.log(req.file)
+  res.send(true)
+})
+
+/*
+ var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname)) //Appending extension
+  }
+})
+*/

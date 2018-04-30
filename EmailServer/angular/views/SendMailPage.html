@@ -53,13 +53,13 @@ background-color: #3385ff;
   <center><input type="text" placeholder="TO:" style="width:400px; height:30px; border-radius:12px;" ng-model="email.to"/></br></center></br>
   <center><input type="text" placeholder="SUBJECT:"   style="width:400px; height:30px; border-radius:12px;" ng-model="email.subject"/></br></center></br>
   <center><textarea placeholder="CONTENT:"   style="width:400px; height:100px; border-radius:12px;" ng-model="email.message"/></textarea></br></br></center></br>
-  <center><div>
-            <input type="file" name="file" id="file">
-          </div>
-				</center>
-  <center><input type="button" class="button" value="UPLOAD" ng-click="upload()"></center>			
-  <center><input type="button" class="button" value="SEND" ng-click="send()"></center>
-  </fieldset>
+    <center><input type="button" class="button" value="SEND" ng-click="send()"></center>
+    <center><div>
+		<input type="file" name="file" id="file" file-model="customer.file">
+	  </div>
+			</center>
+<center><input type="button" class="button" value="UPLOAD" ng-click="upload()"></center>
+</fieldset>
 </form>
 </body>
 </html>

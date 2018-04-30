@@ -39,10 +39,7 @@ router.post('/MainPage',function(req,res){
    })
 })
 
-router.post('/Upload', function(req,res){
-  console.log(req.body)
-  res.send(true)
-})
+
 
 router.post('/changeViewStatus',function(req,res){
    User.findOne({userId:req.body.userId}, function(err, data){

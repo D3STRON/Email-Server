@@ -1,7 +1,7 @@
 var app = angular.module('angular',["ngRoute"])
-var socket=io.connect('http://localhost:8000/')
-//http://localhost:8000/
-//http://help.localtunnel.me/
+var socket=io.connect(local)
+var local='http://localhost:8000/'
+var tunnel='http://help.localtunnel.me/'
 app.config(['$routeProvider','$locationProvider',function($routeProvider, $locationProvider){
    $routeProvider.when('/login',{
       templateUrl: './views/LoginPage.html',
