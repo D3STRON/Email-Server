@@ -17,13 +17,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(cookieParser());
 ////////////////////////////// storage engine//////////////
-var  storage = require('multer-gridfs-storage')({
-  url: mongoURI,
-  file: (req, file) => {
-    return {
-      filename: Date.now() + path.extname(file.originalname), //Appending extension
-      bucketName: 'uploads'
-      }
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname)) //Appending extension
   }
 })
 
@@ -58,9 +57,10 @@ io.on('connection',function(socket){
 
 app.post('/Upload', upload.single('file'),function(req,res, next){
   console.log(req.body)
-  console.log(req.file)
-  res.send(true)
+  console.log(req.file.filename)
+  res.sendfile('./uploads/'+req.file.filename)
 })
+
 
 /*
  var storage = multer.diskStorage({
@@ -71,4 +71,18 @@ app.post('/Upload', upload.single('file'),function(req,res, next){
     cb(null, Date.now() + path.extname(file.originalname)) //Appending extension
   }
 })
+
+
+var  storage = require('multer-gridfs-storage')({
+  url: mongoURI,
+  file: (req, file) => {
+    return {
+      filename: Date.now() + path.extname(file.originalname), //Appending extension
+      bucketName: 'uploads'
+      }
+  }
+})
+
+
+
 */

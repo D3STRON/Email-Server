@@ -19,9 +19,7 @@ app.config(['$routeProvider','$locationProvider',function($routeProvider, $locat
    templateUrl: './views/SendMailPage.html',
    controller: 'sendMailController'
  })
- .otherwise({
-  redirectTo: '/login'
-});
+ 
   $locationProvider.html5Mode({
     enabled: true,
    requireBase: false
