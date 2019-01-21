@@ -19,7 +19,16 @@ app.controller('mainPageController',function($scope,$window,$http,$location){
       }
     
     
-    
+        $scope.viewAttachment = function(event)
+        {
+          console.log("here")
+          $http({
+            method:'GET',
+            url:'http://localhost:8080/Upload', // second server serving download files
+            }).then(function(res){
+              $window.location.href = 'http://localhost:8080/Upload'
+            })
+        }
     
            socket.on('email',function(data){
              console.log(data)

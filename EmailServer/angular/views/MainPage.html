@@ -89,10 +89,21 @@ background-color: #3385ff;
 <p>STATUS: {{email.status}}</p>
 <p>{{email.viewMessage}}</p>
 </ul>
-<input type="button" class= "button" value="Reply" id={{$index}} data-ng-click='reply($event)' />
-<input type="button" class= "button" value="Forward" id={{$index}} data-ng-click='forward($event)'/>
-<input type="button"  class= "button" value="View" id={{$index}} data-ng-click='view($event)'/>
-<input type="button" class= "button" value="Hide" id={{$index}} data-ng-click='hide($event)'/>  At: {{email.date}} , On: {{email.time}}
+<div ng-if=" email.attachment !== '' ">
+	<input type="button" class= "button" value="Reply" id={{$index}} data-ng-click='reply($event)' />
+	<input type="button" class= "button" value="Forward" id={{$index}} data-ng-click='forward($event)'/>
+	<input type="button"  class= "button" value="View" id={{$index}} data-ng-click='view($event)'/>
+	<input type="button" class= "button" value="Hide" id={{$index}} data-ng-click='hide($event)'/>  At: {{email.date}} , On: {{email.time}}
+	<input type="button" class= "button" value="View Attachment" id={{$index}} data-ng-click='viewAttachment($event)' />
+</div>
+
+<div ng-if=" email.attachment === '' ">
+	<input type="button" class= "button" value="Reply" id={{$index}} data-ng-click='reply($event)' />
+	<input type="button" class= "button" value="Forward" id={{$index}} data-ng-click='forward($event)'/>
+	<input type="button"  class= "button" value="View" id={{$index}} data-ng-click='view($event)'/>
+	<input type="button" class= "button" value="Hide" id={{$index}} data-ng-click='hide($event)'/>  At: {{email.date}} , On: {{email.time}}
+</div>
+
 </fieldset>
 
 </div>

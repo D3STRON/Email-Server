@@ -4,6 +4,7 @@ app.controller('sendMailController', function($scope,$http, $window){
       from:$window.sessionStorage.getItem('userId'),
       subject:'',
       message:'',
+      attachment: '',
       status:'Unread',
       date:'',
       time:''
@@ -25,6 +26,9 @@ app.controller('sendMailController', function($scope,$http, $window){
       $http.post('/Upload',fd,{
         transformRequest: angular.identity,
         headers: {'Content-type':undefined}
+      }).then(function(res){
+        $scope.email.attachment = res.data
+        console.log($scope.email.attachment)
       })
     }  
       $scope.send= function(){
@@ -42,6 +46,7 @@ app.controller('sendMailController', function($scope,$http, $window){
             from:$window.sessionStorage.getItem('userId'),
             subject:'',
             message:'',
+            attachment:'',
             status:'Unread',
             date:'',
             time:''

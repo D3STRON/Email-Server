@@ -57,9 +57,10 @@ io.on('connection',function(socket){
 
 app.post('/Upload', upload.single('file'),function(req,res, next){
   console.log(req.body)
-  // console.log(req.file.filename)
-  res.send("sucess")
+  console.log(req.file.filename)
+  res.send(req.file.filename)
 })
+
 
 
 /*
