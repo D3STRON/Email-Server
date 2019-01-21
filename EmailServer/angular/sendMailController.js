@@ -15,6 +15,7 @@ angular.module('angular').controller('sendMailController', function($scope,$http
         $scope.email.subject=$window.sessionStorage.getItem('subject')
         $scope.email.message=$window.sessionStorage.getItem('message')
     }
+    
       $scope.upload= function(){
         var fd = new FormData();
         var files = document.getElementById('file').files[0];
@@ -28,6 +29,7 @@ angular.module('angular').controller('sendMailController', function($scope,$http
 
         });
       }  
+
       $scope.send= function(){
         if($scope.email.to===$window.sessionStorage.getItem('userId')){
           alert("You cant send mail to your self ")

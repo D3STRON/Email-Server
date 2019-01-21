@@ -11,9 +11,9 @@ angular.module('angular').controller('mainPageController',function($scope,$windo
            data: $scope.data,
            headers: {'Content-type':'application/json'}
            }).then(function(res){
-             $window.sessionStorage.setItem('to',"")
+              $window.sessionStorage.setItem('to',"")
               $window.sessionStorage.setItem('message',"")
-               $window.sessionStorage.setItem('subject',"")
+              $window.sessionStorage.setItem('subject',"")
               $scope.remails=res.data.recieved_email
            })
       }

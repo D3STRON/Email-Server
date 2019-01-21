@@ -48,7 +48,7 @@ var io= socket(server)
 io.on('connection',function(socket){
   console.log('Client connected to server', socket.id)
   socket.on('email',function(data){
-     console.log(data)
+    console.log(data)
     User.updateRecievedMail(data)
     User.updateSentMail(data)
     io.sockets.emit('email',data)
@@ -58,7 +58,7 @@ io.on('connection',function(socket){
 app.post('/Upload', upload.single('file'),function(req,res, next){
   console.log(req.body)
   console.log(req.file.filename)
-  res.sendfile('./uploads/'+req.file.filename)
+  res.sendFile(__dirname + '/uploads/'+req.file.filename)
 })
 
 

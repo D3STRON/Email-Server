@@ -26,8 +26,12 @@ module.exports.updateRecievedMail= function(email)
 {
     User.findOne({userId:email.to},function(err,data){
       if(err) throw err
+      else if(data === null)
+      {
+         console.log('No such reciever found')
+      }
       else{
-        console.log(data)
+          console.log(data)
           data.emails.recieved_email.push(email)
           User(data).save(function(err){
             if(err) throw err

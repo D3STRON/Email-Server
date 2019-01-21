@@ -13,10 +13,11 @@ router.post('/login',function(req,res){
       throw err
     }
     else{
-        if(data==null)
+        if(data===null)
         {
+          console.log(req.body)
           User.updateUser(req.body)
-           res.json(req.body)    
+          res.json(req.body)    
         }
         else if(data.password!==req.body.password){
           res.json({
@@ -32,7 +33,14 @@ router.post('/login',function(req,res){
 
 router.post('/MainPage',function(req,res){
    User.findOne(req.body,function(err,data){
-     if(err) throw err
+    if(err) throw err
+    else if(data === null)
+    {
+      var emails = {sent_email:[],
+                     recieved_email:[]
+                    }
+      res.json(emails)              
+    }
      else{
        res.json(data.emails)
      }
