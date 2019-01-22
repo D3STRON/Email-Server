@@ -9,6 +9,7 @@ app.controller('sendMailController', function($scope,$http, $window){
       date:'',
       time:''
     }
+    $scope.fileStatus = 'No files attached'
     $scope.customer = {}
     if($window.sessionStorage.getItem('to')!=undefined || $window.sessionStorage.getItem('subject')!=undefined || $window.sessionStorage.getItem('subject')!=undefined)
     {
@@ -16,43 +17,61 @@ app.controller('sendMailController', function($scope,$http, $window){
         $scope.email.subject=$window.sessionStorage.getItem('subject')
         $scope.email.message=$window.sessionStorage.getItem('message')
     }
+
+    $scope.unload = function(){
+      $http({
+        method:'POST',
+        url:'/Unload',
+        data: {fileName: $scope.email.attachment},
+        headers: {'Content-type':'application/json'}
+        }).then(function(res){
+          $scope.fileStatus = 'No files attached'
+        })
+        $scope.customer = {}
+    }
+    
     $scope.upload = function(){
-      //console.log($scope.customer)
-      var fd= new FormData()
-      for( var key in $scope.customer)
+      if($scope.customer.file !== undefined)
       {
-        fd.append(key,$scope.customer[key])
+        $scope.fileStatus = 'File attached'
+        var fd= new FormData()
+        for( var key in $scope.customer)
+        {
+          fd.append(key,$scope.customer[key])
+        }
+        $http.post('/Upload',fd,{
+          transformRequest: angular.identity,
+          headers: {'Content-type':undefined}
+        }).then(function(res){
+          $scope.email.attachment = res.data
+          console.log($scope.email.attachment)
+        })
       }
-      $http.post('/Upload',fd,{
-        transformRequest: angular.identity,
-        headers: {'Content-type':undefined}
-      }).then(function(res){
-        $scope.email.attachment = res.data
-        console.log($scope.email.attachment)
-      })
-    }  
+    }
+
       $scope.send= function(){
         if($scope.email.to===$window.sessionStorage.getItem('userId')){
           alert("You cant send mail to your self ")
         }
         else{
-          var time = new Date()
-          $scope.email.date=time.getDate().toString()+'-'+(time.getMonth()+1).toString()+'-'+time.getFullYear().toString()
-          $scope.email.time=time.getHours().toString()+':'+time.getMinutes()
-          socket.emit('email',$scope.email)
-          console.log($scope.file)
-          $scope.email={
-            to:'',
-            from:$window.sessionStorage.getItem('userId'),
-            subject:'',
-            message:'',
-            attachment:'',
-            status:'Unread',
-            date:'',
-            time:''
-          }
+              var time = new Date()
+              $scope.email.date=time.getDate().toString()+'-'+(time.getMonth()+1).toString()+'-'+time.getFullYear().toString()
+              $scope.email.time=time.getHours().toString()+':'+time.getMinutes()
+              socket.emit('email',$scope.email)
+              console.log($scope.file)
+              $scope.email={
+                to:'',
+                from:$window.sessionStorage.getItem('userId'),
+                subject:'',
+                message:'',
+                attachment:'',
+                status:'Unread',
+                date:'',
+                time:''
+              }
+              $scope.fileStatus = 'No files attached'
+              $scope.customer = {}
         }
- 
       }
  })
  

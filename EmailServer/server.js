@@ -6,6 +6,7 @@ const path= require('path')
 const crypto= require('crypto')
 const multer = require('multer');
 
+
 var User= require('./Models/UserModel')
 var app= express()
 var routes =require('./routes/index.js')
@@ -53,6 +54,13 @@ io.on('connection',function(socket){
     User.updateSentMail(data)
     io.sockets.emit('email',data)
   })
+})
+
+app.post('/Unload',function(req,res){
+  const fs = require('fs')
+  var filePath = __dirname + "\\uploads"+ "\\"+ req.body.fileName; 
+  fs.unlinkSync(filePath);
+  res.sendStatus(200)
 })
 
 app.post('/Upload', upload.single('file'),function(req,res, next){

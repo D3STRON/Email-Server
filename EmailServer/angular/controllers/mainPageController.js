@@ -21,13 +21,14 @@ app.controller('mainPageController',function($scope,$window,$http,$location){
     
         $scope.viewAttachment = function(event)
         {
-          console.log("here")
-          $http({
-            method:'GET',
-            url:'http://localhost:8080/Upload', // second server serving download files
-            }).then(function(res){
-              $window.location.href = 'http://localhost:8080/Upload'
-            })
+          $scope.indx=$scope.remails.length-event.target.id-1
+          http({
+            method: 'GET',
+            url: 'http://localhost:8080/Upload',
+            params: {filename: $scope.remails[$scope.index].filename} 
+          }).then(function(res){
+            
+          })
         }
     
            socket.on('email',function(data){

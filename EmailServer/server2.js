@@ -12,5 +12,6 @@ app.listen('8080',function(err){
 })
 
 app.get('/Upload',function(req,res){
-  res.sendFile(__dirname + '/uploads/1548102561673.jpg')
+  console.log(req.param)
+  res.sendFile(__dirname + '/uploads/'+ req.param.filename)
 })

@@ -53,12 +53,20 @@ background-color: #3385ff;
   <center><input type="text" placeholder="TO:" style="width:400px; height:30px; border-radius:12px;" ng-model="email.to"/></br></center></br>
   <center><input type="text" placeholder="SUBJECT:"   style="width:400px; height:30px; border-radius:12px;" ng-model="email.subject"/></br></center></br>
   <center><textarea placeholder="CONTENT:"   style="width:400px; height:100px; border-radius:12px;" ng-model="email.message"/></textarea></br></br></center></br>
-    <center><input type="button" class="button" value="SEND" ng-click="send()"></center>
+<center>{{fileStatus}}</center>>	
+  <center><input type="button" class="button" value="SEND" ng-click="send()"></center>
     <center><div>
 		<input type="file" name="file" id="file" file-model="customer.file">
 	  </div>
 			</center>
+<div ng-if = "fileStatus === 'No files attached'">			
 <center><input type="button" class="button" value="UPLOAD" ng-click="upload()"></center>
+</div>
+
+<div ng-if = "fileStatus === 'File attached'">			
+	<center><input type="button" class="button" value="UNLOAD" ng-click="unload()"></center>
+	</div>
+
 </fieldset>
 </form>
 </body>

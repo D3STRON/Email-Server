@@ -3,6 +3,7 @@ var router= express.Router()
 var User= require('../Models/UserModel')
 var Email= require('../Models/EmailModel')
 
+
 router.get('*',function(req,res){
   res.sendfile('./angular/index.html')
 })
@@ -59,5 +60,7 @@ router.post('/changeViewStatus',function(req,res){
      }
    })
 })
+
+
 
 module.exports= router
