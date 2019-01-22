@@ -22,13 +22,8 @@ app.controller('mainPageController',function($scope,$window,$http,$location){
         $scope.viewAttachment = function(event)
         {
           $scope.indx=$scope.remails.length-event.target.id-1
-          http({
-            method: 'GET',
-            url: 'http://localhost:8080/Upload',
-            params: {filename: $scope.remails[$scope.index].filename} 
-          }).then(function(res){
-            
-          })
+          // console.log($scope.remails[$scope.indx])
+          $window.location.href = 'http://localhost:8080/Upload'+'?filename='+$scope.remails[$scope.indx].attachment
         }
     
            socket.on('email',function(data){
