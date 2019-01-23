@@ -27,6 +27,11 @@ app.controller('sendMailController', function($scope,$http, $window){
        }
   });
 
+    $scope.viewAttachment = function()
+    {
+      $window.open('http://localhost:8080/Upload'+'?filename='+$scope.email.attachment);
+    }
+
     $scope.unload = function(){
       if($scope.customer.file === undefined){
             $scope.fileStatus = 'No files attached'
