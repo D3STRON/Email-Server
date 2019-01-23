@@ -15,7 +15,7 @@ app.controller('mySentMailsController',function($scope,$window,$location, $http)
     {
       $scope.indx=$scope.semails.length-event.target.id-1
       // console.log($scope.remails[$scope.indx])
-      $window.open ('http://localhost:8080/Upload'+'?filename='+$scope.semails[$scope.indx].attachment)
+      $window.open (fileserver+'Upload'+'?filename='+$scope.semails[$scope.indx].attachment)
     }
 
     $scope.view= function(event)

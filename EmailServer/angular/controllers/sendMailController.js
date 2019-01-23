@@ -29,7 +29,7 @@ app.controller('sendMailController', function($scope,$http, $window){
 
     $scope.viewAttachment = function()
     {
-      $window.open('http://localhost:8080/Upload'+'?filename='+$scope.email.attachment);
+      $window.open(fileserver+'Upload'+'?filename='+$scope.email.attachment);
     }
 
     $scope.unload = function(){

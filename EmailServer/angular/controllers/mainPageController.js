@@ -24,7 +24,7 @@ app.controller('mainPageController',function($scope,$window,$http,$location){
         {
           $scope.indx=$scope.remails.length-event.target.id-1
           // console.log($scope.remails[$scope.indx])
-          $window.open('http://localhost:8080/Upload'+'?filename='+$scope.remails[$scope.indx].attachment)
+          $window.open(fileserver+'Upload'+'?filename='+$scope.remails[$scope.indx].attachment)
         }
     
            socket.on('email',function(data){
