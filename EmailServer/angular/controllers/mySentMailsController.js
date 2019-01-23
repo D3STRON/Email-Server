@@ -10,6 +10,14 @@ app.controller('mySentMailsController',function($scope,$window,$location, $http)
        $scope.semails=res.data.sent_email
        console.log($scope.semails)
     })
+
+    $scope.viewAttachment = function(event)
+    {
+      $scope.indx=$scope.semails.length-event.target.id-1
+      // console.log($scope.remails[$scope.indx])
+      $window.location.href = 'http://localhost:8080/Upload'+'?filename='+$scope.semails[$scope.indx].attachment
+    }
+
     $scope.view= function(event)
     {
       $scope.indx=$scope.semails.length-event.target.id-1
