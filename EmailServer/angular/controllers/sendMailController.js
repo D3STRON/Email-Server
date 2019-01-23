@@ -11,23 +11,40 @@ app.controller('sendMailController', function($scope,$http, $window){
     }
     $scope.fileStatus = 'No files attached'
     $scope.customer = {}
-    if($window.sessionStorage.getItem('to')!=undefined || $window.sessionStorage.getItem('subject')!=undefined || $window.sessionStorage.getItem('subject')!=undefined)
+    if($window.sessionStorage.getItem('subject')!=='')
     {
         $scope.email.to=$window.sessionStorage.getItem('to')
         $scope.email.subject=$window.sessionStorage.getItem('subject')
         $scope.email.message=$window.sessionStorage.getItem('message')
+        $scope.email.attachment=$window.sessionStorage.getItem('attachment')
+        $scope.fileStatus = 'File attached'
     }
 
+    $scope.$on("$locationChangeStart", function(){
+       if($scope.email.attachment!== '')
+       {
+         $scope.unload()
+       }
+  });
+
     $scope.unload = function(){
-      $http({
-        method:'POST',
-        url:'/Unload',
-        data: {fileName: $scope.email.attachment},
-        headers: {'Content-type':'application/json'}
-        }).then(function(res){
-          $scope.fileStatus = 'No files attached'
-        })
-        $scope.customer = {}
+      if($scope.customer.file === undefined){
+            $scope.fileStatus = 'No files attached'
+            $scope.email.attachment = ''
+            $scope.customer = {}
+      }
+      else{
+          $http({
+          method:'POST',
+          url:'/Unload',
+          data: {fileName: $scope.email.attachment},
+          headers: {'Content-type':'application/json'}
+          }).then(function(res){
+            $scope.fileStatus = 'No files attached'
+            $scope.email.attachment = ''
+            $scope.customer = {}
+          })
+      } 
     }
     
     $scope.upload = function(){

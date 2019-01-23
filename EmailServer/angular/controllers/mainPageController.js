@@ -14,6 +14,7 @@ app.controller('mainPageController',function($scope,$window,$http,$location){
              $window.sessionStorage.setItem('to',"")
               $window.sessionStorage.setItem('message',"")
                $window.sessionStorage.setItem('subject',"")
+               $window.sessionStorage.setItem('attachment',"")
               $scope.remails=res.data.recieved_email
            })
       }
@@ -43,9 +44,10 @@ app.controller('mainPageController',function($scope,$window,$http,$location){
     
          $scope.forward=function(event)
          {
-            $scope.indx=$scope.remails.length-event.target.id-1
+           $scope.indx=$scope.remails.length-event.target.id-1
            $window.sessionStorage.setItem("subject",$scope.remails[$scope.indx].subject)
            $window.sessionStorage.setItem("message",$scope.remails[$scope.indx].message)
+           $window.sessionStorage.setItem("attachment",$scope.remails[$scope.indx].attachment)
            $location.path('/SendMail')
          }
         $scope.view= function(event){
